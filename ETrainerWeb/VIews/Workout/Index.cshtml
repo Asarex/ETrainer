@@ -1,0 +1,16 @@
+﻿@model ETrainerWeb.Models.WorkoutSettings 
+
+
+<h3>Set settings for your workout:</h3>
+<form method="post">
+	<div>
+		<label asp-for="Name"></label>
+		<input asp-for="Name"/>
+	</div>
+	<div>
+		<label>Include muscles</label>
+		<select asp-for="IncludeMuscleses" asp-items="ViewBag.Muscles" multiple size="3">
+		</select>
+	</div>
+	<button asp-controller="Workout" asp-action="ShowWorkout">Generate workout for this settings</button>
+</form>
