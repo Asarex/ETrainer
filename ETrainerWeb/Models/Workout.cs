@@ -12,10 +12,26 @@ namespace ETrainerWeb.Models
 
 		public static Workout GenerateWorkout(WorkoutSettings settings, IReadOnlyList<Exercise> exercises)
 		{
+			// Отберем упражнения для тех мышц которые хотим тренировать
+			var exercisesForWorkout = new List<Exercise>();
+
+			foreach (var exercise in exercises)
+			{
+				if (settings.ExcludeMuscleses != null && exercise.UseMuscles.Any(m => settings.ExcludeMuscleses.Contains(m.Name)))
+				{
+					continue;
+				}
+
+				if (exercise.UseMuscles.Any(m => settings.IncludeMuscleses.Contains(m.Name)))
+				{
+					exercisesForWorkout.Add(exercise);
+				}
+			}
+			
 			var workout = new Workout();
 			workout.Name = settings.Name;
 			workout.Exercises = new List<(Exercise exercise, int counts, int sets)>();
-			workout.Exercises.AddRange(exercises.Select(e => (e, 1 ,1)));
+			workout.Exercises.AddRange(exercisesForWorkout.Select(e => (e, 10 , 3)));
 			return workout;
 		}
 	}
