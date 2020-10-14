@@ -1,0 +1,107 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    font-size: 24px;
+    color: #333333;
+}
+
+ul, li {
+    list-style: none;
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.main-screen {
+    height: 100vh;
+    background: linear-gradient(150.8deg, rgba(255, 85, 85, 0.54) -0.18%, rgba(119, 0, 242, 0.15) 57.4%, rgba(239, 224, 255, 0.18) 104.12%);
+}
+
+.header {
+    margin-bottom: 13vh;
+}
+
+.header__userinfo-container {
+    max-width: 1170px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: flex-end;
+    height: 55px;
+    align-items: center;
+}
+
+.header__userinfo {
+    background-color: #333333;
+    height: 55px;
+}
+
+.header__userinfo-photo {
+    margin-left: 25px;
+}
+
+.header__userinfo-name {
+    line-height: 28px;
+    color: #D2B7E2;
+}
+
+.header__navbar {
+    height: 145px;
+}
+
+.header__navbar-container {
+    max-width: 1170px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    height: 150px;
+    align-items: center;
+    color: #333333;
+}
+
+.header__navbar-container li + li {
+    margin-left: 40px;
+}
+
+.promo__slogan {
+    text-align: center;
+    font-weight: 700;
+    font-size: 72px;
+    line-height: 84px;
+    margin-bottom: 5vh;
+}
+
+.promo__description {
+    margin: 0 auto;
+    max-width: 950px;
+    font-weight: 700;
+    font-size: 28px;
+    line-height: 33px;
+    text-align: center;
+    letter-spacing: 0.02em;
+    margin-bottom: 17vh;
+}
+
+.promo__btn {
+    display: block;
+    text-align: center;
+}
+
+.promo__btn a {
+    padding: 28px 40px;
+    background: #6D6F81;
+    box-shadow: 5px 5px 10px 2px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 36px;
+    line-height: 42px;
+    text-align: center;
+    color: #D9CBE8;
+    transition: 1s;
+}
