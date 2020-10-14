@@ -39,7 +39,7 @@ namespace ETrainerWeb.Controllers
 		{
 			if (ModelState.IsValid)
 			{
-				User user = new User { Email = model.Email, UserName = model.Email};
+				User user = new User { Email = model.Email, UserName = model.Name};
 				// добавляем пользователя
 				var result = await userManager.CreateAsync(user, model.Password);
 				if (result.Succeeded)
@@ -48,13 +48,11 @@ namespace ETrainerWeb.Controllers
 					await signInManager.SignInAsync(user, false);
 					return RedirectToAction("Index", "Home");
 				}
-				else
+				foreach (var error in result.Errors)
 				{
-					foreach (var error in result.Errors)
-					{
-						ModelState.AddModelError(string.Empty, error.Description);
-					}
+					ModelState.AddModelError(string.Empty, error.Description);
 				}
+				
 			}
 			return View(model);
 		}

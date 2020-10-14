@@ -17,12 +17,12 @@ namespace ETrainerWeb.Models
 
 			foreach (var exercise in exercises)
 			{
-				if (settings.ExcludeMuscleses != null && exercise.UseMuscles.Any(m => settings.ExcludeMuscleses.Contains(m.Name)))
+				if (settings.ExcludeMuscleses != null && exercise.UseMuscles.Any(m => settings.ExcludeMuscleses.Contains(m)))
 				{
 					continue;
 				}
 
-				if (exercise.UseMuscles.Any(m => settings.IncludeMuscleses.Contains(m.Name)))
+				if (exercise.UseMuscles.Any(m => settings.IncludeMuscleses.Contains(m)))
 				{
 					exercisesForWorkout.Add(exercise);
 				}

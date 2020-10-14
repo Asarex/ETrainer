@@ -7,6 +7,7 @@ using ETrainerWeb.Models.DbContexts;
 using ETrainerWeb.Models.Repositories;
 using ETrainerWeb.Models.Repositories.ExercisesRepositories;
 using ETrainerWeb.Models.Repositories.MusclesRepositories;
+using ETrainerWeb.Models.Repositories.WorkoutSettingsRepositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -34,9 +35,12 @@ namespace ETrainerWeb
 			services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<AppIdentityDbContext>();
 			services.AddDbContext<AppIdentityDbContext>(options =>
 				options.UseSqlServer(Configuration.GetConnectionString("IdentityConnection")));
+			services.AddDbContext<AppDbContext>(options =>
+				options.UseSqlServer(Configuration.GetConnectionString("AppDbConnection")));
 #if DEBUG
 			services.AddScoped<IMusclesRepository, MusclesRepositoryFake>();
 			services.AddScoped<IExercisesRepository, ExercisesRepositoryFake>();
+			services.AddScoped<IWorkoutSettingsRepository, WorkoutSettingsRepositoryFake>();
 #else
 			
 #endif

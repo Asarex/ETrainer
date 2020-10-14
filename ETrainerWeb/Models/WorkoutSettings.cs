@@ -9,12 +9,17 @@ namespace ETrainerWeb.Models
 	public class WorkoutSettings
 	{
 		[Required]
+		public int ID { get; set; }
+		[Required]
 		public string Name { get; set; }
 
 		[Required]
-		public List<string> IncludeMuscleses { get; set; }
-		public List<string> ExcludeMuscleses { get; set; }
-		public List<Exercise> IncludeExercises { get; set; }
-		public List<Exercise> ExcludeExercises { get; set; }
+		public string UserName { get; set; }
+
+		[Required]
+		public IEnumerable<int> IncludeMuscleses { get; set; }
+		public IEnumerable<int> ExcludeMuscleses { get; set; }
+		public IEnumerable<int> IncludeExercises { get; set; }
+		public IEnumerable<int> ExcludeExercises { get; set; }
 	}
 }
