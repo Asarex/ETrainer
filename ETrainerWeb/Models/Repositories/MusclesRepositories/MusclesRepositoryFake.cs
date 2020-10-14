@@ -17,10 +17,10 @@ namespace ETrainerWeb.Models.Repositories.MusclesRepositories
 				{
 					muscles = new List<Muscle>()
 					{
-						new Muscle(){Name = "Strong muscle", Description = "Very strong muscle"},
-						new Muscle(){Name = "Weak muscle", Description = "Very weak muscle"},
-						new Muscle(){Name = "Muscle", Description = "Ordinary muscle"},
-						new Muscle(){Name = "Another muscle", Description = "Just another muscle"},
+						new Muscle(){ID = 1,Name = "Strong muscle", Description = "Very strong muscle"},
+						new Muscle(){ID = 2, Name = "Weak muscle", Description = "Very weak muscle"},
+						new Muscle(){ID = 3, Name = "Muscle", Description = "Ordinary muscle"},
+						new Muscle(){ID = 4, Name = "Another muscle", Description = "Just another muscle"},
 					};
 
 				}

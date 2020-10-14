@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using ETrainerWeb.Models;
 using ETrainerWeb.Models.Repositories;
 using ETrainerWeb.Models.Repositories.ExercisesRepositories;
+using ETrainerWeb.Models.Repositories.WorkoutSettingsRepositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
@@ -15,15 +17,16 @@ namespace ETrainerWeb.Controllers
 	{
 		private readonly IMusclesRepository musclesRepository;
 		private readonly IExercisesRepository exercisesRepository;
-		public WorkoutController(IMusclesRepository mRep, IExercisesRepository eRep)
+		private readonly IWorkoutSettingsRepository workoutSettingsRepository;
+		public WorkoutController(IMusclesRepository mRep, IExercisesRepository eRep, IWorkoutSettingsRepository wRep)
 		{
 			musclesRepository = mRep;
 			exercisesRepository = eRep;
+			workoutSettingsRepository = wRep;
 		}
-		public IActionResult Index()
+		public IActionResult Index(WorkoutSettings settings)
 		{
-			var settings = new WorkoutSettings();
-			ViewBag.Muscles = new SelectList(musclesRepository.Muscles.Select(m => m.Name));
+			ViewBag.Muscles = musclesRepository.Muscles;
 			return View(settings);
 		}
 
@@ -31,6 +34,19 @@ namespace ETrainerWeb.Controllers
 		{
 			var workout = Workout.GenerateWorkout(settings, exercisesRepository.Exercises);
 			return View(workout);
+		}
+
+		[Authorize]
+		public IActionResult SaveWorkoutSettings(WorkoutSettings settings)
+		{
+			if (ModelState.IsValid)
+			{
+				workoutSettingsRepository.Add(settings);
+				return RedirectToAction("Index", "Home");
+			}
+
+			return RedirectToAction("Index");
+
 		}
 	}
 }

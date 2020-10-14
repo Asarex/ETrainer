@@ -2,19 +2,29 @@
 
 <h3>Set settings for your workout:</h3>
 <form method="post">
+	<input hidden="true" asp-for="UserName" value="@User.Identity.Name"/>
 	<div>
 		<label asp-for="Name"></label>
 		<input asp-for="Name"/>
 	</div>
 	<div>
 		<label asp-for="IncludeMuscleses"></label>
-		<select asp-for="IncludeMuscleses" asp-items="ViewBag.Muscles" multiple size="3">
+		<select asp-for="IncludeMuscleses" multiple size="3">
+			@foreach (Muscle muscle in ViewBag.Muscles)
+			{
+				<option value="@muscle.ID">@muscle.Name</option>
+			}
 		</select>
 	</div>
 	<div>
 		<label asp-for="ExcludeMuscleses"></label>
-		<select asp-for="ExcludeMuscleses" asp-items="ViewBag.Muscles" multiple size="3">
+		<select asp-for="ExcludeMuscleses" multiple size="3">
+			@foreach (Muscle muscle in ViewBag.Muscles)
+			{
+				<option value="@muscle.ID">@muscle.Name</option>
+			}
 		</select>
 	</div>
 	<button asp-controller="Workout" asp-action="ShowWorkout">Generate workout for this settings</button>
+	<button asp-controller="Workout" asp-action="SaveWorkoutSettings">Save this settings</button>
 </form>

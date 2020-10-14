@@ -9,12 +9,14 @@ namespace ETrainerWeb.Models
 	public class Exercise
 	{
 		[Required]
+		public int ID { get; set; }
+		[Required]
 		public string Name { get; set; }
 
 		[Required]
 		public string Description { get; set; }
 
 		[Required]
-		public List<Muscle> UseMuscles { get; set; }
+		public IEnumerable<int> UseMuscles { get; set; }
 	}
 }
