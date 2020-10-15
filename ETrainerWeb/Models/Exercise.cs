@@ -17,6 +17,6 @@ namespace ETrainerWeb.Models
 		public string Description { get; set; }
 
 		[Required]
-		public IEnumerable<int> UseMuscles { get; set; }
+		public ICollection<Muscle> UseMuscles { get; set; }
 	}
 }
