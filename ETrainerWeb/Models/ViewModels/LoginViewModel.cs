@@ -9,8 +9,8 @@ namespace ETrainerWeb.Models.ViewModels
 	public class LoginViewModel
 	{
 		[Required]
-		[Display(Name = "Email")]
-		public string Email { get; set; }
+		[Display(Name = "Login")]
+		public string Login { get; set; }
 
 		[Required]
 		[DataType(DataType.Password)]
