@@ -22,10 +22,10 @@ namespace ETrainerWeb.Models.Repositories.ExercisesRepositories
 							ID = 1,
 							Name = "Pull-Up",
 							Description = "Classic pull-up",
-							UseMuscles = new List<int>()
+							UseMuscles = new List<Muscle>()
 							{
-								availableMuscles[0].ID,
-								availableMuscles[3].ID
+								availableMuscles[0],
+								availableMuscles[3]
 							}
 						},
 						new Exercise()
@@ -33,10 +33,10 @@ namespace ETrainerWeb.Models.Repositories.ExercisesRepositories
 							ID = 2,
 							Name = "Run",
 							Description = "Simple run",
-							UseMuscles = new List<int>()
+							UseMuscles = new List<Muscle>()
 							{
-								availableMuscles[1].ID,
-								availableMuscles[3].ID
+								availableMuscles[1],
+								availableMuscles[3]
 							}
 						},
 						new Exercise()
@@ -44,10 +44,10 @@ namespace ETrainerWeb.Models.Repositories.ExercisesRepositories
 							ID = 3,
 							Name = "Jog",
 							Description = "Light jog",
-							UseMuscles = new List<int>()
+							UseMuscles = new List<Muscle>()
 							{
-								availableMuscles[2].ID,
-								availableMuscles[3].ID
+								availableMuscles[2],
+								availableMuscles[3]
 							}
 						}
 					};

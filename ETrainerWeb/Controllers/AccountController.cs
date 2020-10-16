@@ -69,7 +69,7 @@ namespace ETrainerWeb.Controllers
 			if (ModelState.IsValid)
 			{
 				var result =
-					await signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, false);
+					await signInManager.PasswordSignInAsync(model.Login, model.Password, model.RememberMe, false);
 				if (result.Succeeded)
 				{
 					if (!string.IsNullOrEmpty(model.ReturnUrl) && Url.IsLocalUrl(model.ReturnUrl))
@@ -84,9 +84,7 @@ namespace ETrainerWeb.Controllers
 			}
 			return View(model);
 		}
-
-		[HttpPost]
-		[ValidateAntiForgeryToken]
+		
 		public async Task<IActionResult> Logout()
 		{
 			await signInManager.SignOutAsync();

@@ -17,9 +17,9 @@ namespace ETrainerWeb.Models
 		public string UserName { get; set; }
 
 		[Required]
-		public IEnumerable<int> IncludeMuscleses { get; set; }
-		public IEnumerable<int> ExcludeMuscleses { get; set; }
-		public IEnumerable<int> IncludeExercises { get; set; }
-		public IEnumerable<int> ExcludeExercises { get; set; }
+		public ICollection<Muscle> IncludeMuscleses { get; set; }
+		public ICollection<Muscle> ExcludeMuscleses { get; set; }
+		public ICollection<Muscle> IncludeExercises { get; set; }
+		public ICollection<Muscle> ExcludeExercises { get; set; }
 	}
 }
