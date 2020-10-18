@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace ETrainerWeb.Models
 {
@@ -11,15 +8,16 @@ namespace ETrainerWeb.Models
 		[Required]
 		public int ID { get; set; }
 		[Required]
+		[MaxLength(30)]
 		public string Name { get; set; }
 
 		[Required]
 		public string UserName { get; set; }
 
 		[Required]
-		public ICollection<Muscle> IncludeMuscleses { get; set; }
-		public ICollection<Muscle> ExcludeMuscleses { get; set; }
-		public ICollection<Muscle> IncludeExercises { get; set; }
-		public ICollection<Muscle> ExcludeExercises { get; set; }
+		public ICollection<Muscle> IncludeMuscleses { get; set; } = new List<Muscle>();
+		public ICollection<Muscle> ExcludeMuscleses { get; set; } = new List<Muscle>();
+		public ICollection<Muscle> IncludeExercises { get; set; } = new List<Muscle>();
+		public ICollection<Muscle> ExcludeExercises { get; set; } = new List<Muscle>();
 	}
 }
