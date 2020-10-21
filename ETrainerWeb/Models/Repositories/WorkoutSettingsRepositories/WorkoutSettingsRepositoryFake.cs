@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -9,10 +8,7 @@ namespace ETrainerWeb.Models.Repositories.WorkoutSettingsRepositories
 	{
 		private List<WorkoutSettings> workoutSettings;
 
-		public IReadOnlyList<WorkoutSettings> WorkoutSettings
-		{
-			get { return workoutSettings ?? (workoutSettings = new List<WorkoutSettings>()); }
-		}
+		public IQueryable<WorkoutSettings> WorkoutSettings => (workoutSettings ??= new List<WorkoutSettings>()).AsQueryable();
 
 		public bool Add(WorkoutSettings newSettings)
 		{
@@ -28,6 +24,11 @@ namespace ETrainerWeb.Models.Repositories.WorkoutSettingsRepositories
 		public bool Delete(WorkoutSettings settings)
 		{
 			return workoutSettings?.Remove(settings) ?? false;
+		}
+
+		public Task<bool> SaveAsync(WorkoutSettings settings)
+		{
+			throw new System.NotImplementedException();
 		}
 	}
 }

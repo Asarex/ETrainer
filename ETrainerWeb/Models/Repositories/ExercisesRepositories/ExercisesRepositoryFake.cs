@@ -8,8 +8,8 @@ namespace ETrainerWeb.Models.Repositories.ExercisesRepositories
 	public class ExercisesRepositoryFake : IExercisesRepository
 	{
 		private List<Exercise> exercises;
-		private readonly IReadOnlyList<Muscle> availableMuscles = new MusclesRepositories.MusclesRepositoryFake().Muscles;
-		public IReadOnlyList<Exercise> Exercises
+		private readonly IReadOnlyList<Muscle> availableMuscles = new MusclesRepositories.MusclesRepositoryFake().Muscles.ToList();
+		public IQueryable<Exercise> Exercises
 		{
 			get
 			{
@@ -53,7 +53,7 @@ namespace ETrainerWeb.Models.Repositories.ExercisesRepositories
 					};
 				}
 
-				return exercises;
+				return exercises.AsQueryable();
 			}
 		}
 
@@ -71,6 +71,20 @@ namespace ETrainerWeb.Models.Repositories.ExercisesRepositories
 		public bool Delete(Exercise exercise)
 		{
 			return exercises?.Remove(exercise) ?? false;
+		}
+
+		public async Task<bool> SaveAsync(Exercise exercise)
+		{
+			var oldExercise = exercises.FirstOrDefault(e => e.ID == exercise.ID);
+			if (oldExercise is null)
+			{
+				return false;
+			}
+
+			oldExercise.Name = exercise.Name;
+			oldExercise.Description = exercise.Description;
+			oldExercise.UseMuscles = exercise.UseMuscles;
+			return true;
 		}
 	}
 }
