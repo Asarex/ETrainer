@@ -33,17 +33,14 @@ namespace ETrainerWeb
 			services.AddControllersWithViews();
 			services.AddRazorPages();
 			services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<AppIdentityDbContext>();
-			services.AddDbContext<AppIdentityDbContext>(options =>
+			services.AddDbContextPool<AppIdentityDbContext>(options =>
 				options.UseSqlServer(Configuration.GetConnectionString("IdentityConnection")));
-			services.AddDbContext<AppDbContext>(options =>
-				options.UseSqlServer(Configuration.GetConnectionString("AppDbConnection")));
-#if DEBUG
-			services.AddScoped<IMusclesRepository, MusclesRepositoryFake>();
-			services.AddScoped<IExercisesRepository, ExercisesRepositoryFake>();
-			services.AddScoped<IWorkoutSettingsRepository, WorkoutSettingsRepositoryFake>();
-#else
-			
-#endif
+			services.AddDbContextPool<AppDbContext>(options =>
+				options.UseLazyLoadingProxies().UseSqlServer(Configuration.GetConnectionString("AppDbConnection")));
+
+			services.AddScoped<IMusclesRepository, MusclesRepository>();
+			services.AddScoped<IExercisesRepository, ExercisesRepository>();
+			services.AddScoped<IWorkoutSettingsRepository, WorkoutSettingsRepository>();
 		}
 
 		public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

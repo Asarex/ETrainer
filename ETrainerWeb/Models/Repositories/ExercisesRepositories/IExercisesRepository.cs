@@ -7,9 +7,10 @@ namespace ETrainerWeb.Models.Repositories.ExercisesRepositories
 {
 	public interface IExercisesRepository
 	{
-		IReadOnlyList<Exercise> Exercises { get; }
+		IQueryable<Exercise> Exercises { get; }
 
 		bool Add(Exercise newExercise);
 		bool Delete(Exercise exercise);
+		Task<bool> SaveAsync(Exercise exercise);
 	}
 }

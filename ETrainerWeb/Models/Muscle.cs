@@ -1,4 +1,8 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using ETrainerWeb.Models.JoinModels;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace ETrainerWeb.Models
 {
@@ -14,6 +18,13 @@ namespace ETrainerWeb.Models
 		[Required]
 		[MaxLength(200)]
 		public string Description { get; set; }
+
+		public virtual ICollection<MuscleExercise> MuscleExercises { get; set; }
+
+		public virtual ICollection<WorkoutSettingsIncludeMuscles> IncludeInSettings { get; set; }
+		public virtual ICollection<WorkoutSettingsExcludeMuscles> ExcludeFromSettings { get; set; }
+
+
 
 		public override bool Equals(object obj)
 		{
