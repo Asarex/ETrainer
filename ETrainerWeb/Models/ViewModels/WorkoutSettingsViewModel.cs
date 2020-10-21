@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
+using ETrainerWeb.Attributes;
 
 namespace ETrainerWeb.Models.ViewModels
 {
@@ -16,10 +14,11 @@ namespace ETrainerWeb.Models.ViewModels
 		public string UserName { get; set; }
 
 		[Required]
+		[NotEmptyEnumerable]
 		[Display(Name = "Используемые мышцы")]
-		public List<int> IncludeMuscleses { get; set; }
+		public List<int> IncludeMuscleses { get; set; } = new List<int>();
 		[Display(Name = "Исключаемые мышцы")]
-		public List<int> ExcludeMuscleses { get; set; }
+		public List<int> ExcludeMuscleses { get; set; } = new List<int>();
 		public List<int> IncludeExercises { get; set; }
 		public List<int> ExcludeExercises { get; set; }
 	}

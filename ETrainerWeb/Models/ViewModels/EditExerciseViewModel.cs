@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using ETrainerWeb.Attributes;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace ETrainerWeb.Models.ViewModels
@@ -28,6 +29,7 @@ namespace ETrainerWeb.Models.ViewModels
 		[Required]
 		public string Description { get; set; }
 		[Required]
+		[NotEmptyEnumerable]
 		public List<int> UseMuscles { get; set; }
 
 		[BindNever]

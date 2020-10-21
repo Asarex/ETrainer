@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices;
-using System.Threading.Tasks;
 using ETrainerWeb.Models;
 using ETrainerWeb.Models.Repositories;
 using ETrainerWeb.Models.Repositories.ExercisesRepositories;
@@ -10,7 +7,6 @@ using ETrainerWeb.Models.Repositories.WorkoutSettingsRepositories;
 using ETrainerWeb.Models.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace ETrainerWeb.Controllers
 {
@@ -25,7 +21,7 @@ namespace ETrainerWeb.Controllers
 			exercisesRepository = eRep;
 			workoutSettingsRepository = wRep;
 		}
-		public IActionResult Index(WorkoutSettings settings)
+		public IActionResult Index(WorkoutSettingsViewModel settings)
 		{
 			ViewBag.Muscles = musclesRepository.Muscles;
 			return View(settings);
@@ -33,15 +29,20 @@ namespace ETrainerWeb.Controllers
 
 		public IActionResult ShowWorkout(WorkoutSettingsViewModel settings)
 		{
-			var workoutSettings = new WorkoutSettings();
-			workoutSettings.Name = settings.Name;
-			workoutSettings.UserName = settings.UserName;
-			workoutSettings.IncludeMuscleses = musclesRepository.Muscles
-				.Where(m => settings.IncludeMuscleses.Contains(m.ID)).ToList();
-			workoutSettings.ExcludeMuscleses = musclesRepository.Muscles
-				.Where(m => settings.ExcludeMuscleses.Contains(m.ID)).ToList();
-			var workout = Workout.GenerateWorkout(workoutSettings, exercisesRepository.Exercises);
-			return View(workout);
+			if (ModelState.IsValid)
+			{
+				var workoutSettings = new WorkoutSettings();
+				workoutSettings.Name = settings.Name;
+				workoutSettings.UserName = settings.UserName;
+				workoutSettings.IncludeMuscleses = musclesRepository.Muscles
+					.Where(m => settings.IncludeMuscleses.Contains(m.ID)).ToList();
+				workoutSettings.ExcludeMuscleses = musclesRepository.Muscles
+					.Where(m => settings.ExcludeMuscleses.Contains(m.ID)).ToList();
+				var workout = Workout.GenerateWorkout(workoutSettings, exercisesRepository.Exercises);
+				return View(workout);
+			}
+			ViewBag.Muscles = musclesRepository.Muscles;
+			return View("Index", settings);
 		}
 
 		[Authorize]
