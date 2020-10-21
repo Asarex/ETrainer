@@ -1,0 +1,15 @@
+﻿@model Muscle
+
+<form method="post">
+	<div>
+		<label asp-for="Name"></label>
+		<input asp-for="Name" />
+	</div>
+	<div>
+		<label asp-for="Description"></label>
+		<input asp-for="Description" />
+	</div>
+	<button asp-action="EditMuscle">Save</button>
+	<button asp-action="Muscles">Cancel</button>
+</form>
+

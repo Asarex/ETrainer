@@ -1,0 +1,29 @@
+﻿@model IQueryable<Muscle>
+
+<table>
+	<tr>
+		<th>
+			Name
+		</th>
+		<th>
+			Description
+		</th>
+		<th></th>
+	</tr>
+	@foreach (var m in Model)
+	{
+		<tr>
+			<td>
+				@m.Name
+			</td>
+			<td>
+				@m.Description
+			</td>
+			<td>
+				<a asp-action="EditMuscle" asp-route-id="@m.ID">Edit</a>
+				<a asp-action="DeleteMuscle" asp-route-id="@m.ID">Delete</a>
+			</td>
+		</tr>
+	}
+</table>
+<a asp-action="EditMuscle" asp-route-id="0">Add new muscle</a>

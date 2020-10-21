@@ -1,0 +1,23 @@
+﻿@model ETrainerWeb.Models.ViewModels.EditExerciseViewModel
+
+<form method="post">
+	<div>
+		<label asp-for="Name"></label>
+		<input asp-for="Name" />
+	</div>
+	<div>
+		<label asp-for="Description"></label>
+		<input asp-for="Description" />
+	</div>
+	<div>
+		<label asp-for="UseMuscles"></label>
+		<select multiple size="3" asp-for="UseMuscles">
+			@foreach (Muscle muscle in @Model.AllMuscles)
+			{
+				<option value="@muscle.ID" selected="@Model.UseMuscles.Contains(muscle.ID)">@muscle.Name</option>
+			}
+		</select>
+	</div>
+	<button asp-action="EditExercise">Save</button>
+	<button asp-action="Exercises">Cancel</button>
+</form>
