@@ -1,24 +1,26 @@
 ﻿@model ETrainerWeb.Models.ViewModels.LoginViewModel
  
-<h2>Login</h2>
-<form method="post" asp-controller="Account" asp-action="Login"
-      asp-route-returnUrl="@Model?.ReturnUrl">
-	<div asp-validation-summary="ModelOnly"></div>
-	<div>
-		<label asp-for="Login"></label><br />
-		<input asp-for="Login" />
-		<span asp-validation-for="Login"></span>
-	</div>
-	<div>
-		<label asp-for="Password"></label><br />
-		<input asp-for="Password" />
-		<span asp-validation-for="Password"></span>
-	</div>
-	<div>
-		<label asp-for="RememberMe"></label><br />
-		<input asp-for="RememberMe" />
-	</div>
-	<div>
-		<input type="submit" value="Войти" />
-	</div>
-</form>
+
+<div class="login__container">
+	<form method="post" class="login__form" asp-controller="Account" asp-action="Login"
+	      asp-route-returnUrl="@Model?.ReturnUrl">
+		<div asp-validation-summary="ModelOnly"></div>
+		<div class="login__container-element login__logname">
+			<label asp-for="Login">Логин</label><br />
+			<input asp-for="Login" class="login__input-field"/><br />
+			<span class="login__warning" asp-validation-for="Login"></span>
+		</div>
+		<div class="login__container-element login__password">
+			<label asp-for="Password">Пароль</label><br />
+			<input asp-for="Password" class="login__input-field"/><br />
+			<span class="login__warning" asp-validation-for="Password"></span>
+		</div>
+		<div class="login__container-element login__remember">
+			<label asp-for="RememberMe">Запомнить?</label>
+			<input asp-for="RememberMe" class="login__input-check"/>
+		</div>
+		<div class="login__container-element">
+			<input class="login__btn" type="submit" value="Войти" />
+		</div>
+	</form>
+</div>

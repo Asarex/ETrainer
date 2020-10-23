@@ -5,6 +5,7 @@
     font-weight: 500;
     font-size: 24px;
     color: #333333;
+    box-sizing: border-box;
 }
 
 ul, li {
@@ -21,6 +22,7 @@ a {
 
 .main-screen {
     height: 100vh;
+    min-height: 920px;
     background: linear-gradient(150.8deg, rgba(255, 85, 85, 0.54) -0.18%, rgba(119, 0, 242, 0.15) 57.4%, rgba(239, 224, 255, 0.18) 104.12%);
 }
 
@@ -37,13 +39,22 @@ a {
     align-items: center;
 }
 
+.header__btn {
+    color: #D2B7E2;
+}
+
+.header__btn + .header__btn {
+    margin-left: 25px;
+}
+
+
 .header__userinfo {
     background-color: #333333;
     height: 55px;
 }
 
 .header__userinfo-photo {
-    margin-left: 25px;
+    margin: 0 25px;
 }
 
 .header__userinfo-name {
@@ -71,7 +82,7 @@ a {
 
 .promo__slogan {
     text-align: center;
-    font-weight: 700;
+    font-weight: 500;
     font-size: 72px;
     line-height: 84px;
     margin-bottom: 5vh;
@@ -80,7 +91,7 @@ a {
 .promo__description {
     margin: 0 auto;
     max-width: 950px;
-    font-weight: 700;
+    font-weight: 500;
     font-size: 28px;
     line-height: 33px;
     text-align: center;
@@ -98,10 +109,89 @@ a {
     background: #6D6F81;
     box-shadow: 5px 5px 10px 2px rgba(0, 0, 0, 0.25);
     border-radius: 10px;
-    font-weight: bold;
     font-size: 36px;
     line-height: 42px;
     text-align: center;
     color: #D9CBE8;
-    transition: 1s;
+    transition: 0.3s;
+}
+
+.promo__btn a:hover{
+    background: #3c3d43;
+}
+
+.login__container {
+    max-width: 1170px;
+    margin: 0 auto;
+}
+
+.login__form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.login__container-element {
+    margin-bottom: 15px;
+}
+
+.login__warning {
+    font-size: 18px;
+    color: #585858;
+}
+
+.login__input-field {
+    margin-top: 5px;
+    border: 1px solid #333333;
+    border-radius: 4px;
+    width: 350px;
+    height: 32px;
+    font-size: 20px;
+    padding-left: 10px;
+    padding-right: 3px;
+    background-color: #ffffff;
+    /*-webkit-border-radius: 3px; //закругление углов (Google Chrome)
+    -moz-border-radius: 3px; //закругление углов (FireFox)
+    -khtml-border-radius: 3px; //закругление углов (Safari)
+    background: #ffffff !important; // желательно прописывать, так как в Chrome при сохранных данных оно может быть желтым
+    outline: none; // удаляет обводку в браузерах хром(желтая) и сафари(синяя)
+    color: #cccccc; //цвет шрифта в обычном состоянии
+    font-size: 11px; // Размер шрифта
+    font-family: Tahoma; // Стиль шрифта*/
+}
+
+.login__input-field:focus {
+    border: 2px solid #333333;
+    background-color: #f1f1f1;
+    outline: none;
+}
+
+.login__input-check {
+    height: 15px;
+    width: 15px;
+    margin-left: 10px;
+    cursor: pointer;
+    transform: translateY(1px);
+}
+
+.login__btn {
+    margin-top: 15px;
+    height: 55px;
+    width: 150px;
+    border-radius: 10px;
+    border: none;
+    background: #6D6F81;
+    cursor: pointer;
+    color: #D9CBE8;
+    transition: 0.3s;
+    box-shadow: 5px 5px 10px 2px rgba(0, 0, 0, 0.25);
+
+}
+
+.login__btn:hover{
+    background: #3c3d43;
+}
+
+.login__remember label {
+    font-size: 20px;
 }
