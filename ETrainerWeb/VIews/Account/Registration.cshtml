@@ -1,24 +1,28 @@
 ﻿@model ETrainerWeb.Models.ViewModels.RegistrationViewModel
-@{
-	ViewData["Title"] = "Registration";
-}
+
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
 
 <form method="post">
 	<div>
 		<label asp-for="Name"></label>
 		<input asp-for="Name" />
+		<span asp-validation-for="Name"/>
 	</div>
 	<div>
 		<label asp-for="Password"></label>
 		<input asp-for="Password" />
+		<span asp-validation-for="Password"/>
 	</div>
 	<div>
 		<label asp-for="PasswordConfirm"></label>
 		<input asp-for="PasswordConfirm" />
+		<span asp-validation-for="PasswordConfirm"/>
 	</div>
 	<div>
 		<label asp-for="Email"></label>
 		<input asp-for="Email" />
+		<span asp-validation-for="Email"/>
 	</div>
-	<button asp-action="Registration">Register</button>
+	<button asp-action="Registration">@Localizer["Registration"]</button>
 </form>

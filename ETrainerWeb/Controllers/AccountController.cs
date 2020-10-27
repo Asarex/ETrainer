@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using Castle.Core.Internal;
 using ETrainerWeb.Models;
 using ETrainerWeb.Models.ViewModels;
 using Microsoft.AspNetCore.Authorization;
@@ -28,9 +26,10 @@ namespace ETrainerWeb.Controllers
 		}
 
 		[HttpGet]
-		public IActionResult Registration()
+		public IActionResult Registration(string returnUrl)
 		{
-			return View();
+			var model = new RegistrationViewModel {ReturnUrl = returnUrl};
+			return View(model);
 		}
 
 		[HttpPost]
@@ -46,7 +45,7 @@ namespace ETrainerWeb.Controllers
 				{
 					// установка куки
 					await signInManager.SignInAsync(user, false);
-					return RedirectToAction("Index", "Home");
+					return model.ReturnUrl.IsNullOrEmpty() ? (IActionResult)RedirectToAction("Index", "Home") : Redirect(model.ReturnUrl);
 				}
 				foreach (var error in result.Errors)
 				{
@@ -57,9 +56,10 @@ namespace ETrainerWeb.Controllers
 			return View(model);
 		}
 
-		public IActionResult Login()
+		public IActionResult Login(string returnUrl)
 		{
-			return View();
+			var model = new LoginViewModel {ReturnUrl = returnUrl};
+			return View(model);
 		}
 
 		[HttpPost]
@@ -77,7 +77,7 @@ namespace ETrainerWeb.Controllers
 						return Redirect(model.ReturnUrl);
 					}
 				
-					return RedirectToAction("Index", "Home");
+					return model.ReturnUrl.IsNullOrEmpty() ? (IActionResult)RedirectToAction("Index", "Home") : Redirect(model.ReturnUrl);
 				}
 
 				ModelState.AddModelError("", "Неправильный логин и (или) пароль");

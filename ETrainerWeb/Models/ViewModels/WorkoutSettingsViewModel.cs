@@ -6,18 +6,18 @@ namespace ETrainerWeb.Models.ViewModels
 {
 	public class WorkoutSettingsViewModel
 	{
-		[Required]
-		[Display(Name = "Название настроек тренировки")]
+		[Required(ErrorMessage = "NameError")]
+		[Display(Name = "Name")]
 		public string Name { get; set; }
 
 		[Required]
 		public string UserName { get; set; }
 
-		[Required]
+		[Required(ErrorMessage = "IncludeMusclesError")]
 		[NotEmptyEnumerable]
-		[Display(Name = "Используемые мышцы")]
+		[Display(Name = "IncludeMuscles")]
 		public List<int> IncludeMuscleses { get; set; } = new List<int>();
-		[Display(Name = "Исключаемые мышцы")]
+		[Display(Name = "ExcludeMuscles")]
 		public List<int> ExcludeMuscleses { get; set; } = new List<int>();
 		public List<int> IncludeExercises { get; set; }
 		public List<int> ExcludeExercises { get; set; }

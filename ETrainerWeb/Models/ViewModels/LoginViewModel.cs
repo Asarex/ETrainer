@@ -1,23 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace ETrainerWeb.Models.ViewModels
 {
 	public class LoginViewModel
 	{
-		[Required]
+		[Required(ErrorMessage = "LoginError")]
 		[Display(Name = "Login")]
 		public string Login { get; set; }
 
-		[Required]
+		[Required(ErrorMessage = "PasswordError")]
 		[DataType(DataType.Password)]
-		[Display(Name = "Пароль")]
+		[Display(Name = "Password")]
 		public string Password { get; set; }
 
-		[Display(Name = "Запомнить?")]
+		[Display(Name = "Remember")]
 		public bool RememberMe { get; set; }
 
 		public string ReturnUrl { get; set; }

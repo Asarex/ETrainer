@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using ETrainerWeb.Models;
@@ -12,6 +13,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Localization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -27,11 +29,12 @@ namespace ETrainerWeb
 		{
 			Configuration = configuration;
 		}
-
+		
 		public void ConfigureServices(IServiceCollection services)
 		{
-			services.AddControllersWithViews();
+			services.AddControllersWithViews().AddDataAnnotationsLocalization().AddViewLocalization();
 			services.AddRazorPages();
+			services.AddLocalization(options => options.ResourcesPath = "Resources");
 			services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<AppIdentityDbContext>();
 			services.AddDbContextPool<AppIdentityDbContext>(options =>
 				options.UseSqlServer(Configuration.GetConnectionString("IdentityConnection")));
@@ -41,6 +44,19 @@ namespace ETrainerWeb
 			services.AddScoped<IMusclesRepository, MusclesRepository>();
 			services.AddScoped<IExercisesRepository, ExercisesRepository>();
 			services.AddScoped<IWorkoutSettingsRepository, WorkoutSettingsRepository>();
+
+			services.Configure<RequestLocalizationOptions>(options =>
+			{
+				var supportedCultures = new[]
+				{
+					new CultureInfo("en"),
+					new CultureInfo("ru")
+				};
+
+				options.DefaultRequestCulture = new RequestCulture("en");
+				options.SupportedCultures = supportedCultures;
+				options.SupportedUICultures = supportedCultures;
+			});
 		}
 
 		public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -49,6 +65,8 @@ namespace ETrainerWeb
 			{
 				app.UseDeveloperExceptionPage();
 			}
+
+			app.UseRequestLocalization();
 
 			app.UseStaticFiles();
 			app.UseRouting();

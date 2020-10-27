@@ -1,4 +1,7 @@
-﻿<div class="header__userinfo-container">
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+
+<div class="header__userinfo-container">
 	@if (User.Identity.IsAuthenticated)
 	{
 		<p class="header__userinfo-name"><a asp-action="Index" asp-controller="Account">@User.Identity.Name</a></p>
@@ -7,7 +10,7 @@
 	}
 	else
 	{
-		<p class="header__registration-btn header__btn"><a asp-action="Registration" asp-controller="Account">Регистрация </a></p>
-		<p class="header__login-bnt header__btn"><a asp-action="Login" asp-controller="Account">Войти</a></p>
+		<p class="header__registration-btn header__btn"><a asp-action="Registration" asp-controller="Account">@Localizer["Registration"] </a></p>
+		<p class="header__login-bnt header__btn"><a asp-action="Login" asp-controller="Account">@Localizer["Login"]</a></p>
 	}
 </div>
