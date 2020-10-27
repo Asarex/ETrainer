@@ -18,6 +18,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation;
 
 namespace ETrainerWeb
 {
@@ -32,7 +33,7 @@ namespace ETrainerWeb
 		
 		public void ConfigureServices(IServiceCollection services)
 		{
-			services.AddControllersWithViews().AddDataAnnotationsLocalization().AddViewLocalization();
+			services.AddControllersWithViews().AddDataAnnotationsLocalization().AddViewLocalization().AddRazorRuntimeCompilation();
 			services.AddRazorPages();
 			services.AddLocalization(options => options.ResourcesPath = "Resources");
 			services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<AppIdentityDbContext>();

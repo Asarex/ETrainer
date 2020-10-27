@@ -3,37 +3,44 @@
 <html>
 
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width" />
-	<title>@ViewData["Title"]</title>
-	<link href="~/css/style.css" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width" />
+  <title>@ViewData["Title"]</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap"
+  rel="stylesheet">
+  <link href="~/css/style.min.css" rel="stylesheet">
 </head>
 
 <body>
-	<section class="main-screen">
-		<header class="header" id="header">
-			<div class="header__userinfo">
-				<vc:user-info />
-				<vc:select-localization />
-			</div>
-			<div class="header__navbar">
-				<div class="header__navbar-container">
-					<a asp-action="Index" asp-controller="Home">
-						<img src="~/img/logo.svg" alt="" class="header__navbar-logo">
-					</a>
-					<menu class="header__navbar-navigation">
-						<ul>
-							<li><a href="/">Главная</a></li>
-							<li><a href="#">Контакты</a></li>
-						</ul>
-					</menu>
-				</div>
-			</div>
-		</header>
-		<div>
-			@RenderBody()
-		</div>
-	</section>
+  <section class="main-screen">
+    <header class="header" id="header">
+      <div class="header__userinfo">
+        <vc:user-info />
+        <vc:select-localization />
+      </div>
+      <div class="header__navbar">
+        <div class="header__navbar-container">
+          <div class="header__logo">
+            <a class="header__logo-img" asp-action="Index" asp-controller="Home">
+              <img src="~/img/logo.svg" alt="">
+            </a>
+            <a class="header__logo-text" asp-action="Index" asp-controller="Home">
+              ETrainer
+            </a>
+          </div>
+          <menu class="header__navbar-navigation">
+            <ul>
+              <li><a href="/">Главная</a></li>
+              <li><a href="#">Контакты</a></li>
+            </ul>
+          </menu>
+        </div>
+      </div>
+    </header>
+    <div>
+      @RenderBody()
+    </div>
+  </section>
 </body>
 
 </html>
