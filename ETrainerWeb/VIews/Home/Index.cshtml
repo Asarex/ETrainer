@@ -1,23 +1,18 @@
-﻿@model string;
-@{
-	ViewData["Title"] = "Home page";
-}
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@model string;
+@inject IViewLocalizer Localizer
 
 <div>
-	@* <h1>Hello @Model</h1> *@
-
 	<div class="promo" id="promo">
 		<h1 class="promo__slogan">
-			Твой карманный тренер
+			@Localizer["Slogan"]
 		</h1>
 		<p class="promo__description">
-			Не думай над программой тренировок - работай на результат.
-			Просто расскажи ETrainer, что ты хочешь, а он все сделает за тебя.
-			От тебя требуется лишь хороший настрой и немного усилий.
+			@Localizer["Message"]
 		</p>
 		<div class="promo__btn">
 			<a href="#">
-				Начни прямо сейчас
+				@Localizer["StartButton"]
 			</a>
 		</div>
 	</div>

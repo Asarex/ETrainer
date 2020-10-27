@@ -1,31 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Identity;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace ETrainerWeb.Models.ViewModels
 {
 	public class RegistrationViewModel
 	{
-		[Required]
-		[Display(Name = "Имя пользователя")]
+		[Required(ErrorMessage = "UserNameError")]
+		[Display(Name = "UserName")]
 		public string Name { get; set; }
 
-		[Required]
+		[Required(ErrorMessage = "PasswordError")]
 		[DataType(DataType.Password)]
-		[Display(Name = "Пароль")]
+		[Display(Name = "Password")]
 		public string Password { get; set; }
 
-		[Required]
-		[Compare("Password", ErrorMessage = "Пароли не совпадают")]
+		[Required(ErrorMessage = "PasswordError")]
+		[Compare("Password", ErrorMessage = "PasswordsDoNotMatch")]
 		[DataType(DataType.Password)]
-		[Display(Name = "Подтвердите пароль")]
+		[Display(Name = "RepeatPassword")]
 		public string PasswordConfirm { get; set; }
 
-		[Required]
+		[Required(ErrorMessage = "EmailError")]
+		[Display(Name = "Email")]
 		public string Email { get; set; }
+
+		public string ReturnUrl { get; set; }
 
 	}
 }

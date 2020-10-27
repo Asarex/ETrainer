@@ -15,12 +15,23 @@ namespace ETrainerWeb.Controllers
 		private readonly IMusclesRepository musclesRepository;
 		private readonly IExercisesRepository exercisesRepository;
 		private readonly IWorkoutSettingsRepository workoutSettingsRepository;
+
 		public WorkoutController(IMusclesRepository mRep, IExercisesRepository eRep, IWorkoutSettingsRepository wRep)
 		{
 			musclesRepository = mRep;
 			exercisesRepository = eRep;
 			workoutSettingsRepository = wRep;
 		}
+
+		[HttpGet]
+		public IActionResult Index()
+		{
+			ViewBag.Muscles = musclesRepository.Muscles;
+			var settings = new WorkoutSettingsViewModel();
+			return View(settings);
+		}
+
+		[HttpPost]
 		public IActionResult Index(WorkoutSettingsViewModel settings)
 		{
 			ViewBag.Muscles = musclesRepository.Muscles;
