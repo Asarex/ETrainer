@@ -1,24 +1,16 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using ETrainerWeb.Models.JoinModels;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using ETrainerWebAPI.Models.JoinModels;
 
-namespace ETrainerWeb.Models
+namespace ETrainerWebAPI.Models
 {
 	public class Muscle
 	{
 		[Required]
 		public int ID { get; set; }
 
-		[Required]
-		[MaxLength(30)]
-		public string Name { get; set; }
-
-		[Required]
-		[MaxLength(200)]
-		public string Description { get; set; }
-
+		public virtual ICollection<MuscleTranslatedInfo> MuscleTranslatedInfos { get; set; }
+		
 		public virtual ICollection<MuscleExercise> MuscleExercises { get; set; }
 
 		public virtual ICollection<WorkoutSettingsIncludeMuscles> IncludeInSettings { get; set; }
@@ -33,7 +25,7 @@ namespace ETrainerWeb.Models
 				return false;
 			}
 			var m = (Muscle)obj;
-			return Name == m.Name;
+			return ID == m.ID;
 		}
 
 		public static bool operator ==(Muscle left, Muscle right)
@@ -48,7 +40,7 @@ namespace ETrainerWeb.Models
 
 		public override int GetHashCode()
 		{
-			return Name.GetHashCode();
+			return ID.GetHashCode();
 		}
 	}
 }

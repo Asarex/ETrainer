@@ -1,16 +1,11 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using ETrainerWeb.Models;
+using ETrainerWebAPI.Models;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 
-namespace ETrainerWeb
+namespace ETrainerWebAPI
 {
 	public class Program
 	{
@@ -21,21 +16,16 @@ namespace ETrainerWeb
 			using (var scope = host.Services.CreateScope())
 			{
 				var serviceProvider = scope.ServiceProvider;
-				try
-				{
-					var userManager = serviceProvider.
-						GetRequiredService<UserManager<User>>();
+	
+				var userManager = serviceProvider.
+					GetRequiredService<UserManager<ETrainerUser>>();
 
-					var roleManager = serviceProvider.
-						GetRequiredService<RoleManager<IdentityRole>>();
+				var roleManager = serviceProvider.
+					GetRequiredService<RoleManager<IdentityRole>>();
 
-					await IdentityDataInitializer.SeedRoles(roleManager);
-					await IdentityDataInitializer.SeedUsers(userManager, roleManager);
-				}
-				catch
-				{
-					// ignored
-				}
+				await IdentityDataInitializer.SeedRoles(roleManager);
+				await IdentityDataInitializer.SeedUsers(userManager, roleManager);
+
 			}
 			host.Run();
         }

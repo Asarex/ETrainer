@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace ETrainerWeb.Migrations.AppDb
+namespace ETrainerWebAPI.Migrations.AppDb
 {
     public partial class AppInit : Migration
     {

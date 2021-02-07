@@ -2,23 +2,17 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
-using ETrainerWeb.Models.JoinModels;
+using ETrainerWebAPI.Models.JoinModels;
 
-namespace ETrainerWeb.Models
+namespace ETrainerWebAPI.Models
 {
 	public class Exercise
 	{
 		[Required]
 		public int ID { get; set; }
 
-		[Required]
-		[MaxLength(30)]
-		public string Name { get; set; }
-
-		[Required]
-		[MaxLength(200)]
-		public string Description { get; set; }
-
+		public virtual ICollection<ExerciseTranslatedInfo> ExerciseTranslatedInfos { get; set; }
+		
 		[Required]
 		public virtual ICollection<MuscleExercise> MuscleExercises { get; set; } = new List<MuscleExercise>();
 

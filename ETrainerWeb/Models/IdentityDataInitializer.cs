@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 
-namespace ETrainerWeb.Models
+namespace ETrainerWebAPI.Models
 {
 	public class IdentityDataInitializer
 	{
@@ -17,25 +15,34 @@ namespace ETrainerWeb.Models
 				await roleManager.CreateAsync(role);
 			}
 
-			var userExist = await roleManager.RoleExistsAsync("User");
+			var userExist = await roleManager.RoleExistsAsync("CommonUser");
 			if (!userExist)
 			{
-				var role = new IdentityRole("User");
+				var role = new IdentityRole("ETrainerUser");
 				await roleManager.CreateAsync(role);
 			}
 		}
 
-		public static async Task SeedUsers(UserManager<User> userManager, RoleManager<IdentityRole> roleManager)
+		public static async Task SeedUsers(UserManager<ETrainerUser> userManager, RoleManager<IdentityRole> roleManager)
 		{
 			var admin = await userManager.FindByNameAsync("Admin");
 			if (admin is null)
 			{
-				admin = new User { UserName = "Admin" };
-				var res = await userManager.CreateAsync(admin, "notAdmin1@");
-				if (res.Succeeded)
+				try
 				{
-					await userManager.AddToRoleAsync(admin, "Admin");
+					admin = new ETrainerUser { UserName = "Admin" , DisplayedName = "Administrator"};
+					var res = await userManager.CreateAsync(admin, "notAdmin1@");
+					if (res.Succeeded)
+					{
+						await userManager.AddToRoleAsync(admin, "Admin");
+					}
 				}
+				catch (Exception e)
+				{
+					Console.WriteLine(e);
+					throw;
+				}
+				
 			}
 		}
 	}

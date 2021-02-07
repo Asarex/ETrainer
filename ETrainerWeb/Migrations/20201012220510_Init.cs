@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace ETrainerWeb.Migrations
+namespace ETrainerWebAPI.Migrations
 {
     public partial class Init : Migration
     {

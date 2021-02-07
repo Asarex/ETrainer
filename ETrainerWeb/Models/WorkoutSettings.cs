@@ -2,9 +2,9 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
-using ETrainerWeb.Models.JoinModels;
+using ETrainerWebAPI.Models.JoinModels;
 
-namespace ETrainerWeb.Models
+namespace ETrainerWebAPI.Models
 {
 	public class WorkoutSettings
 	{

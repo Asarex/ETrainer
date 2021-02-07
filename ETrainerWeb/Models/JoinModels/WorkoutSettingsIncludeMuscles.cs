@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace ETrainerWeb.Models.JoinModels
+﻿namespace ETrainerWebAPI.Models.JoinModels
 {
 	public class WorkoutSettingsIncludeMuscles
 	{
