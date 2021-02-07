@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ETrainerWebAPI.Models;
 
-namespace ETrainerWebAPI.Models.Repositories.WorkoutSettingsRepositories
+namespace ETrainerWebAPI.Repositories.WorkoutSettingsRepositories
 {
 	public class WorkoutSettingsRepositoryFake : IWorkoutSettingsRepository
 	{

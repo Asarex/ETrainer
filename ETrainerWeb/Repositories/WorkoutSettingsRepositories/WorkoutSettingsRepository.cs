@@ -1,8 +1,9 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
+using ETrainerWebAPI.Models;
 using ETrainerWebAPI.Models.DbContexts;
 
-namespace ETrainerWebAPI.Models.Repositories.WorkoutSettingsRepositories
+namespace ETrainerWebAPI.Repositories.WorkoutSettingsRepositories
 {
 	public class WorkoutSettingsRepository : IWorkoutSettingsRepository
 	{

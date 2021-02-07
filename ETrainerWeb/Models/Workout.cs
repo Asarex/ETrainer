@@ -7,8 +7,7 @@ namespace ETrainerWebAPI.Models
 	{
 		public string Name { get; set; }
 
-		public List<(Exercise exercise, int counts, int sets)> Exercises { get; set; } =
-			new List<(Exercise exercise, int counts, int sets)>();
+		public List<(Exercise exercise, int counts, int sets)> Exercises { get; set; } = new();
 
 		public static Workout GenerateWorkout(WorkoutSettings settings, IQueryable<Exercise> exercises)
 		{

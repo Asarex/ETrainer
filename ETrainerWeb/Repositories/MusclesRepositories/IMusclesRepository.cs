@@ -1,7 +1,8 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
+using ETrainerWebAPI.Models;
 
-namespace ETrainerWebAPI.Models.Repositories.MusclesRepositories
+namespace ETrainerWebAPI.Repositories.MusclesRepositories
 {
 	public interface IMusclesRepository
 	{

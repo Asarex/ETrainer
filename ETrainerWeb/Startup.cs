@@ -3,9 +3,9 @@ using System.Globalization;
 using System.Linq;
 using ETrainerWebAPI.Models;
 using ETrainerWebAPI.Models.DbContexts;
-using ETrainerWebAPI.Models.Repositories.ExercisesRepositories;
-using ETrainerWebAPI.Models.Repositories.MusclesRepositories;
-using ETrainerWebAPI.Models.Repositories.WorkoutSettingsRepositories;
+using ETrainerWebAPI.Repositories.ExercisesRepositories;
+using ETrainerWebAPI.Repositories.MusclesRepositories;
+using ETrainerWebAPI.Repositories.WorkoutSettingsRepositories;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -15,6 +15,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.IdentityModel.Tokens;
 
 namespace ETrainerWebAPI
 {

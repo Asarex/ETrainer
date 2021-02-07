@@ -1,20 +1,21 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ETrainerWebAPI.Models;
 
-namespace ETrainerWebAPI.Models.Repositories.ExercisesRepositories
+namespace ETrainerWebAPI.Repositories.ExercisesRepositories
 {
 	public class ExercisesRepositoryFake : IExercisesRepository
 	{
-		private List<Exercise> exercises;
+		private List<Exercise> _exercises;
 		private readonly IReadOnlyList<Muscle> availableMuscles = new MusclesRepositories.MusclesRepositoryFake().Muscles.ToList();
 		public IQueryable<Exercise> Exercises
 		{
 			get
 			{
-				if (exercises is null)
+				if (_exercises is null)
 				{
-					exercises = new List<Exercise>()
+					_exercises = new List<Exercise>()
 					{
 						new Exercise()
 						{
@@ -59,7 +60,7 @@ namespace ETrainerWebAPI.Models.Repositories.ExercisesRepositories
 					};
 				}
 
-				return exercises.AsQueryable();
+				return _exercises.AsQueryable();
 			}
 		}
 
@@ -67,7 +68,7 @@ namespace ETrainerWebAPI.Models.Repositories.ExercisesRepositories
 		{
 			if (!Exercises.Contains(newExercise))
 			{
-				exercises.Add(newExercise);
+				_exercises.Add(newExercise);
 				return true;
 			}
 
@@ -76,12 +77,12 @@ namespace ETrainerWebAPI.Models.Repositories.ExercisesRepositories
 
 		public bool Delete(Exercise exercise)
 		{
-			return exercises?.Remove(exercise) ?? false;
+			return _exercises?.Remove(exercise) ?? false;
 		}
 
 		public async Task<bool> SaveAsync(Exercise exercise)
 		{
-			var oldExercise = exercises.FirstOrDefault(e => e.ID == exercise.ID);
+			var oldExercise = _exercises.FirstOrDefault(e => e.ID == exercise.ID);
 			if (oldExercise is null)
 			{
 				return false;
